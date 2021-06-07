@@ -6,7 +6,7 @@ const {
     GraphQLFloat,
     GraphQLNonNull,
     GraphQLSchema,
-    GraphQLList
+    GraphQLList,
 } =graphql;
 const ProductModel=require('./model/Products')
 
@@ -33,6 +33,7 @@ const RootQuery=new GraphQLObjectType({
         }
     }
 });
+
 const Mutation=new GraphQLObjectType({
     name:"Mutation",
     fields:{
@@ -47,6 +48,7 @@ const Mutation=new GraphQLObjectType({
                 amount:{type:new GraphQLNonNull(GraphQLFloat)}
             },
             resolve(parent,args){
+
                 return  new ProductModel({
                     title:args.title,
                     price:args.price,

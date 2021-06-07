@@ -1,14 +1,13 @@
 import React from 'react';
 import '../App.css';
-import {NavLink} from 'react-router-dom';
+import {NavLink,Link} from 'react-router-dom';
 import CartIcon from '@material-ui/icons/ShoppingCart';
 import SearchIcon from '@material-ui/icons/Search';
-import {OutlinedInput,InputLabel,IconButton,FormControl,InputAdornment
-        ,makeStyles,Button,Badge} from '@material-ui/core'
+import {makeStyles,Badge} from '@material-ui/core'
 import ETHIcon from '../images/ETH.png';
 import USAIcon from '../images/USA.png';
-import HomeImage from '../images/PngItem_1937090.png';
-import HomeImage2 from '../images/PngItem_6183236.png';
+
+
 const useStyle=makeStyles({
     searchInput:{
         borderRadius:"50px",
@@ -33,19 +32,6 @@ export default function Header() {
         event.preventDefault();
     };
     const classes=useStyle();
-    
-    React.useEffect(()=>{
-        window.addEventListener('scroll',function(){
-            var header=document.getElementsByClassName("header1");
-            header[0].classList.toggle('sticky',window.scrollY>0);
-            var header1=document.getElementsByClassName("header2");
-            header1[0].classList.toggle('stickyup',window.scrollY>0);
-            var header2=document.getElementsByClassName("search-input");
-            header2[0].classList.toggle('sticky-search',window.scrollY>0);
-            var sign_up_btn=document.getElementsByClassName("sign-in-btn");
-            sign_up_btn[0].classList.toggle('sticky',window.scrollY>0);
-        });
-    })
     return (
         <div>
             <div className="header1">
@@ -53,7 +39,10 @@ export default function Header() {
                     <img width="30px" height="30px" src={ETHIcon} alt="ETH"/>
                     <img width="30px" height="30px" style={{marginTop:"2px",marginLeft:"5px"}} src={USAIcon} alt="USA"/>
                 </div>
-                <button  className="sign-in-btn1" variant="contained" size="small">Sign-In</button>
+                <Link to="/login">
+                    <button className="sign-in-btn1" variant="contained" size="small">
+                    Sign-In</button>
+                </Link>
             </div>
             <div className="header2">
                 <div className="logo">
@@ -61,10 +50,10 @@ export default function Header() {
                 </div>
                 <div className="nav-item">
                     <ul>
-                        <li><NavLink to="/home">
+                        <li><NavLink to="/">
                             Home
                         </NavLink></li>
-                        <li><NavLink to="" className="tooltip">
+                        <li><div className="tooltip">
                             Catagory
                             <div className="tooltiptext">
                                 <ul>
@@ -76,7 +65,7 @@ export default function Header() {
                                     <li><NavLink to="/catagory/traditional">Winter</NavLink></li>
                                 </ul>
                             </div>
-                        </NavLink></li>
+                        </div></li>
                         <li><NavLink to="/About">About</NavLink></li>
                         <li><NavLink to="/Contact">Contact</NavLink></li>
                     </ul>
@@ -86,14 +75,17 @@ export default function Header() {
                         <input type="text" name="search" placeholder="search" />
                         <button><SearchIcon/></button>
                     </div>
-                    <button className="cart-btn"><CartIcon /><Badge label="0"/></button>
-                    <button  className="sign-in-btn" variant="contained" size="small">Sign-In</button>
+                    <Link to="/product/selectedproduct">
+                        <button 
+                        className="cart-btn"><CartIcon /><Badge label="0"/></button>
+                    </Link>
+                    <Link to="/login">
+                    <button
+                      className="sign-in-btn" variant="contained" size="small">Sign-In</button>
+                    </Link>
                 </div>
             </div>
-            <div className="home-image">
-                <img src={HomeImage2} alt="" width="50%" height="400px"/>
-                <img src={HomeImage} alt="" width="50%" height="400px"/>
-            </div>
+            
         </div>
     )
 }

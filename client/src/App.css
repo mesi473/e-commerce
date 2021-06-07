@@ -232,7 +232,6 @@ body::-webkit-scrollbar{
   gap: 40px;
 }
 .catagories-list{
-  /* background: #ffffff; */
   width: 300px;
   height: 400px;
   margin: 40px;
@@ -369,3 +368,148 @@ body::-webkit-scrollbar{
   width: 100%;
   height: 100%;
 }
+
+
+/* selected items css */
+.cartItem {
+  width: 100%;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  gap: 8px;
+  background: #fff;
+  border-radius: 2px;
+  place-items: center;
+  margin-bottom: 8px;
+  margin-top: 200px;
+}
+
+.cartItem__name {
+  text-decoration: none;
+  color: #171717;
+}
+
+.cartItem__name:hover {
+  color: #dd219e;
+} 
+
+.cartItem__select {
+  padding: 10px 17px;
+}
+
+.cartItem__deleteBtn {
+  padding: 10px 17px;
+  color: red;
+  background: #f4f4f4;
+  border: 1px solid #171717;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.cartItem__deleteBtn:hover,
+.carItem__deleteBtn:active,
+.carItem__deleteBtn:focus{
+  background: #171717;
+  transform: scale(1.2);
+}
+
+  @media (max-width: 700px) {
+  .cartItem__name {
+    font-size: 0.8rem;
+  }
+
+  .cartItem__select,
+  .cartItem__deleteBtn {
+    padding: 8px 13px;
+  }
+
+  .cartitem__price {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .cartItem__name {
+    font-size: 0.6rem;
+  }
+
+  .cartItem__select,
+  .cartItem__deleteBtn {
+    padding: 5px 8px;
+  }
+
+  .cartitem__price {
+    font-size: 0.6rem;
+  }
+}
+
+
+/* login */
+
+.login-page{
+  width: 100%;
+  height: 100vh;
+  background: #eeeeee;
+}
+.login-area{
+
+}
+
+.log{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  box-shadow: 1px 1px 5px  rgba(0,0,0,0.3);
+  background: #ffffff;
+  width: 400px;
+  padding: 30px 20px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  opacity: 0.7;
+}
+.log input[type="text"],.log input[type="password"]{
+  border: 0;
+  background: none;
+  display: black;
+  margin:20px auto;
+  text-align: center;
+  border: 2px solid #5C7795 ;
+  padding: 14px 10px;
+  outline: none;
+  color: black;
+  border-radius: 60px;
+  transition: 0.25s;
+  
+}
+.log h1{
+  color: black;
+  text-transform:uppercase;
+  font-weight: 500;
+}
+.log input[type="text"]:focus,.log input[type="password"]:focus{
+ width: 280px;
+  border-color: #5C7795;
+}
+
+.log a{
+     border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid green;
+    padding: 14px 40px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition:24px;
+    transition :0.25s;
+    cursor: pointer;
+    text-decoration: none;
+}
+.log a:hover{
+  background: #5C7795; 
+}
+
