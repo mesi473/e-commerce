@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import {useMutation} from '@apollo/client';
+import {addItem} from '../../apollo-client/Mutation';
 
 export default function AddCloth() {
 
@@ -9,7 +11,8 @@ export default function AddCloth() {
         description:'',
         rating:'',
         Image:''
-    })
+    });
+    const [add_cloth]=useMutation(addItem);
     return (
         <div className="add-cloth-page">
             <div className="add-cloth">
@@ -47,21 +50,34 @@ export default function AddCloth() {
                             type="text" name="description" placeholder="description"/>
                             <input
                             onChange={(e)=>{
-                                const formData=new FormData();
-                                formData.append('Image',state.Image);
-                                formData.append('title',state.title)
-                                formData.append("description",state.description)
-                                formData.append("price",state.price)
-                                formData.append("rating",state.rating)
-                                formData.append("amount",state.amount)
+                                // const formData=new FormData();
+                                // formData.append('Image',state.Image);
+                                // formData.append('title',state.title)
+                                // formData.append("description",state.description)
+                                // formData.append("price",state.price)
+                                // formData.append("rating",state.rating)
+                                // formData.append("amount",state.amount)
+                                setState({...state,Image:e.target.files[0]});
                             }} 
                             type="file" name="image" placeholder="image" required="required"/>
                             
                         </div>
                     </div>
                     <button   onClick={()=>{
-                        
-                    }}>Login</button>
+                        console.log(state.Image);
+                        // add_cloth({
+                        //     variables:{
+                        //         Image:state.Image,
+                        //         title:state.title,
+                        //         description:state.description,
+                        //         price:state.price,
+                        //         rating:state.rating,
+                        //         amount:state.amount,
+                        //     },
+                        //     errorPolicy:"all",
+                        //     // refetchQueries:[{query:}]
+                        // })
+                    }}>Add</button>
                 </div>
             </div>
         </div>

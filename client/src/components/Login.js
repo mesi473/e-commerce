@@ -12,7 +12,7 @@ export default function Login() {
         <div className="login-page">
             <Header/>
             <div className="login-area">
-                <div class="log">
+                <div className="log">
                     <h1>login</h1>
                     <input
                     onChange={(e)=>{
