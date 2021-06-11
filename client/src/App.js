@@ -3,8 +3,6 @@ import {BrowserRouter as Router,Route} from 'react-router-dom'
 import SelectedItems from './components/SelectedItems';
 import Home from './components/Home';
 import Login from './components/Login';
-import {Provider} from 'react-redux';
-import {Store} from './redux/Store';
 import AdminDashboard from './components/DashBoardComponets/AdminDashboard';
 import {ApolloClient,ApolloProvider,InMemoryCache} from '@apollo/client';
 
@@ -12,11 +10,10 @@ import {ApolloClient,ApolloProvider,InMemoryCache} from '@apollo/client';
 
 const client=new ApolloClient({
   cache:new InMemoryCache,
-  uri:"http://localhost:5000/e-shope/"
+  uri:"http://localhost:5000/e-shope",
 });
 function App() {
   return (
-    <Provider store={Store}>
       <ApolloProvider client={client}>
         <Router>
           <Route path="/" exact component={Home}/>
@@ -25,7 +22,6 @@ function App() {
           <Route exact path="/admin/dashboard" component={AdminDashboard} />
         </Router>
       </ApolloProvider>
-    </Provider>
   );
 }
 

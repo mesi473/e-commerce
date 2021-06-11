@@ -1,18 +1,23 @@
 import React from 'react';
 import {useMutation} from '@apollo/client';
-import {addItem} from '../../apollo-client/Mutation';
+import {addProductProperty} from '../../apollo-client/Mutation';
+import {useDropzone} from 'react-dropzone'
 
 export default function AddCloth() {
 
     const [state,setState]=React.useState({
         title:'',
-        amount:'',
-        price:'',
+        amount:0,
+        price:0,
         description:'',
-        rating:'',
+        rating:0,
         Image:''
     });
-    const [add_cloth]=useMutation(addItem);
+    const [add_Product]=useMutation(addProductProperty);
+    const onDrop = React.useCallback(acceptedFiles => {
+        // Do something with the files
+      }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     return (
         <div className="add-cloth-page">
             <div className="add-cloth">
@@ -50,33 +55,33 @@ export default function AddCloth() {
                             type="text" name="description" placeholder="description"/>
                             <input
                             onChange={(e)=>{
-                                // const formData=new FormData();
-                                // formData.append('Image',state.Image);
-                                // formData.append('title',state.title)
-                                // formData.append("description",state.description)
-                                // formData.append("price",state.price)
-                                // formData.append("rating",state.rating)
-                                // formData.append("amount",state.amount)
                                 setState({...state,Image:e.target.files[0]});
                             }} 
                             type="file" name="image" placeholder="image" required="required"/>
-                            
+                            <div {...getRootProps()}>
+                                <input {...getInputProps()} />
+                                {
+                                    isDragActive ?
+                                    <p>Drop the files here ...</p> :
+                                    <p>Drag 'n' drop some files here, or click to select files</p>
+                                }
+                            </div>
                         </div>
                     </div>
                     <button   onClick={()=>{
                         console.log(state.Image);
-                        // add_cloth({
-                        //     variables:{
-                        //         Image:state.Image,
-                        //         title:state.title,
-                        //         description:state.description,
-                        //         price:state.price,
-                        //         rating:state.rating,
-                        //         amount:state.amount,
-                        //     },
-                        //     errorPolicy:"all",
-                        //     // refetchQueries:[{query:}]
-                        // })
+                        add_Product({
+                            variables:{
+                                title:state.title,
+                                Image:state.Image,
+                                description:state.description,
+                                price:state.price,
+                                rating:state.rating,
+                                amount:state.amount,
+                            },
+                            errorPolicy:"all",
+                            // refetchQueries:[{query:}]
+                        })
                     }}>Add</button>
                 </div>
             </div>
