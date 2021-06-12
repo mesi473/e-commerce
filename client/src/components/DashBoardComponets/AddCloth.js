@@ -1,23 +1,17 @@
 import React from 'react';
-import {useMutation} from '@apollo/client';
-import {addProductProperty} from '../../apollo-client/Mutation';
-import {useDropzone} from 'react-dropzone'
-
+import {useDispatch} from 'react-redux';
+import {addItem} from '../../redux/Action';
 export default function AddCloth() {
 
     const [state,setState]=React.useState({
         title:'',
-        amount:0,
-        price:0,
+        amount:'',
+        price:'',
         description:'',
-        rating:0,
+        rating:'',
         Image:''
     });
-    const [add_Product]=useMutation(addProductProperty);
-    const onDrop = React.useCallback(acceptedFiles => {
-        // Do something with the files
-      }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    const dispatch=useDispatch();
     return (
         <div className="add-cloth-page">
             <div className="add-cloth">
@@ -58,29 +52,25 @@ export default function AddCloth() {
                                 setState({...state,Image:e.target.files[0]});
                             }} 
                             type="file" name="image" placeholder="image" required="required"/>
-                            <div {...getRootProps()}>
-                                <input {...getInputProps()} />
-                                {
-                                    isDragActive ?
-                                    <p>Drop the files here ...</p> :
-                                    <p>Drag 'n' drop some files here, or click to select files</p>
-                                }
-                            </div>
+                            
                         </div>
                     </div>
                     <button   onClick={()=>{
-                        console.log(state.Image);
-                        add_Product({
-                            variables:{
-                                title:state.title,
-                                Image:state.Image,
-                                description:state.description,
-                                price:state.price,
-                                rating:state.rating,
-                                amount:state.amount,
-                            },
-                            errorPolicy:"all",
-                            // refetchQueries:[{query:}]
+                        const formData=new FormData();
+                        formData.append('image',state.Image);
+                        formData.append('title',state.title);
+                        formData.append('description',state.description);
+                        formData.append('rating',state.rating);
+                        formData.append('amount',state.amount);
+                        formData.append('price',state.price);
+                        dispatch(addItem(formData));
+                        setState({
+                            title:'',
+                            amount:'',
+                            price:'',
+                            description:'',
+                            rating:'',
+                            Image:''
                         })
                     }}>Add</button>
                 </div>

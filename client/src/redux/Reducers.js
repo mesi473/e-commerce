@@ -1,8 +1,11 @@
 import * as Constant from './constants';
 
 let initialState={
-    cart:[],
-
+    cart:{
+        status:false,
+        cartItem:[],
+        error:[]
+    },
 }
 
 export const Login=(state=initialState,action)=>{
@@ -17,4 +20,17 @@ export const Login=(state=initialState,action)=>{
             }
     }
 
+}
+export const addItem=(state=initialState,action)=>{
+    switch(action.type){
+        case Constant.ADD_ITEM:
+            return{
+                ...state,
+                cart:action.payload
+            }
+        default:
+            return {
+                ...state
+            }
+    }
 }

@@ -1,4 +1,5 @@
 import * as Constant from './constants';
+import axios from 'axios';
 
 export const Login=()=>async (dispatch)=>{
     try{
@@ -16,10 +17,14 @@ export const Login=()=>async (dispatch)=>{
         console.log(error);
     }
 }
-export const addItem=()=>async (dispatch)=>{
+export const addItem=(item)=>async (dispatch)=>{
+    console.log(item);
     try{
+        const {data}=await axios.post(`http://localhost:5000/additem`,item)
+        console.log(data);
         dispatch({
-            type:Constant.ADD_ITEM
+            type:Constant.ADD_ITEM,
+            playload:data
         })
     }catch(error){
         console.log(error)

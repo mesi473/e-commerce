@@ -1,12 +1,14 @@
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension'
-import {Login}  from './Reducers';
 import Thunk from 'redux-thunk';
+import {addItem} from './Reducers';
+ 
+const middleware=[Thunk];
 
-const midleware=[Thunk]
-const Reducers=combineReducers({
-    Login
+const reducer=combineReducers({
+    addItem,
 })
 
-export const Store=createStore(Reducers,composeWithDevTools(applyMiddleware(...midleware)))
+const store=createStore(reducer,composeWithDevTools(applyMiddleware(...middleware)));
 
+export default store;

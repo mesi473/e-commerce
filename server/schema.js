@@ -10,11 +10,15 @@ const {
     GraphQLSchema,
     GraphQLList,
     GraphQLBoolean,
+    buildSchema
 } =graphql;
 const ProductModel=require('./model/Products')
 
+
+
+
 // const schema = makeExecutableSchema({
-//     typeDefs: /* GraphQL */ `
+//     typeDefs: /*  */ `
 //         scalar Upload
 //     `,
 //     resolvers: {
@@ -27,7 +31,7 @@ const ProductType=new GraphQLObjectType({
     fields:()=>({
         title:{type:new GraphQLNonNull(GraphQLString)},
         price:{type:new GraphQLNonNull(GraphQLFloat)},
-        Image:{type:new GraphQLNonNull(GraphQLUpload)},
+        // Image:{type:new GraphQLNonNull(GraphQLUpload)},
         rating:{type:new GraphQLNonNull(GraphQLFloat)},
         description:{type:new GraphQLNonNull(GraphQLString)},
         amount:{type:new GraphQLNonNull(GraphQLFloat)}
@@ -71,43 +75,42 @@ const Mutation=new GraphQLObjectType({
                 // }).save().then().catch(error=>console.log(error))
             }
         },
-    //     deleteProduct:{
-    //         type:ProductType,
-    //         args:{
-    //             id:{type:new GraphQLNonNull(GraphQLString)},
-    //         },
-    //         resolve(parent,args){
-    //             return ProductModel.deleteOne({_id:args.id});
-    //         }
-    //     },
-    //     editProduct:{
-    //         type:ProductType,
-    //         args:{
-    //             title:{type:new GraphQLNonNull(GraphQLString)},
-    //             price:{type:new GraphQLNonNull(GraphQLFloat)},
-    //             imageUrl:{type:new GraphQLNonNull(GraphQLString)},
-    //             rating:{type:new GraphQLNonNull(GraphQLFloat)},
-    //             description:{type:new GraphQLNonNull(GraphQLFloat)},
-    //             amount:{type:new GraphQLNonNull(GraphQLFloat)}
-    //         },
-    //         resolve(parent,args){
-    //             return ProductModel.update({_id:args.id},{
-    //                 title:args.title,
-    //                 price:args.price,
-    //                 imageUrl:args.imageUrl,
-    //                 rating:args.rating,
-    //                 description:args.description,
-    //                 amount:args.amount
-    //             })
+        deleteProduct:{
+            type:ProductType,
+            args:{
+                id:{type:new GraphQLNonNull(GraphQLString)},
+            },
+            resolve(parent,args){
+                return ProductModel.deleteOne({_id:args.id});
+            }
+        },
+        editProduct:{
+            type:ProductType,
+            args:{
+                title:{type:new GraphQLNonNull(GraphQLString)},
+                price:{type:new GraphQLNonNull(GraphQLFloat)},
+                imageUrl:{type:new GraphQLNonNull(GraphQLString)},
+                rating:{type:new GraphQLNonNull(GraphQLFloat)},
+                description:{type:new GraphQLNonNull(GraphQLFloat)},
+                amount:{type:new GraphQLNonNull(GraphQLFloat)}
+            },
+            resolve(parent,args){
+                return ProductModel.update({_id:args.id},{
+                    title:args.title,
+                    price:args.price,
+                    imageUrl:args.imageUrl,
+                    rating:args.rating,
+                    description:args.description,
+                    amount:args.amount
+                })
                 
-    //         }
-    //     },
+            }
+        },
     }
 })
 
-const schema=new GraphQLSchema({
+
+module.exports =schema=new GraphQLSchema({
     query:RootQuery,
     mutation:Mutation,
-    
 })
-module.exports=schema;
