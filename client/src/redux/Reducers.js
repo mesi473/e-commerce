@@ -1,11 +1,16 @@
 import * as Constant from './constants';
 
 let initialState={
-    cart:{
+    item:{
         status:false,
-        cartItem:[],
+        items:[],
         error:[]
     },
+    catagory:{
+        status:false,
+        catagories:[],
+        error:[]
+    }
 }
 
 export const Login=(state=initialState,action)=>{
@@ -26,7 +31,20 @@ export const addItem=(state=initialState,action)=>{
         case Constant.ADD_ITEM:
             return{
                 ...state,
-                cart:action.payload
+                item:action.payload
+            }
+        default:
+            return {
+                ...state
+            }
+    }
+}
+export const addCatagory=(state=initialState,action)=>{
+    switch(action.type){
+        case Constant.ADD_CATAGORY:
+            return{
+                ...state,
+                catagory:action.payload
             }
         default:
             return {

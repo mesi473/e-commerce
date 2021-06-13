@@ -1,6 +1,5 @@
 const  graphql =require( 'graphql');
-const { makeExecutableSchema } = require('@graphql-tools/schema');
-const { GraphQLUpload } = require('graphql-upload');
+const CatagoryModel=require('./model/Catagory');
 
 const {
     GraphQLObjectType,
@@ -9,8 +8,6 @@ const {
     GraphQLNonNull,
     GraphQLSchema,
     GraphQLList,
-    GraphQLBoolean,
-    buildSchema
 } =graphql;
 const ProductModel=require('./model/Products')
 
@@ -29,14 +26,23 @@ const ProductModel=require('./model/Products')
 const ProductType=new GraphQLObjectType({
     name:"Product",
     fields:()=>({
+        _id:{type:new GraphQLNonNull(graphql.GraphQLID)},
         title:{type:new GraphQLNonNull(GraphQLString)},
         price:{type:new GraphQLNonNull(GraphQLFloat)},
-        // Image:{type:new GraphQLNonNull(GraphQLUpload)},
+        imageUrl:{type:new GraphQLNonNull(GraphQLString)},
         rating:{type:new GraphQLNonNull(GraphQLFloat)},
         description:{type:new GraphQLNonNull(GraphQLString)},
         amount:{type:new GraphQLNonNull(GraphQLFloat)}
     })
 });
+const CatagoryType=new GraphQLObjectType({
+    name:"Catagory",
+    fields:()=>({
+        title:{type:new GraphQLNonNull(GraphQLString)},
+        imageUrl:{type:new GraphQLNonNull(GraphQLString)},
+        description:{type:new GraphQLNonNull(GraphQLString)},
+    })
+})
 
 const RootQuery=new GraphQLObjectType({
     name:"RootQuery",
@@ -44,7 +50,13 @@ const RootQuery=new GraphQLObjectType({
         product:{
             type:new GraphQLList(ProductType),
             resolve(parent,args){
-                return ProductModel.find({})
+                return ProductModel.find({});
+            }
+        },
+        catagory:{
+            type:new GraphQLList(CatagoryType),
+            resolve(parent,args){
+                return CatagoryModel.find({})
             }
         }
     }

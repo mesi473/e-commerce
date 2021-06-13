@@ -187,7 +187,9 @@
 }
 .add-cloth-area input[type="file"],
 .add-cloth-area input[type="text"],
-.add-cloth-area input[type="number"]{
+.add-cloth-area input[type="number"],
+.add-cloth-area select
+{
     border: 0;
     background: none;
     display: black;
@@ -206,7 +208,7 @@
     font-weight: 500;
   }
   
-  .add-cloth-area input[type="text"]:focus,
+  .add-cloth-area select .add-cloth-area input[type="text"]:focus,
   .add-cloth-area input[type="number"]:focus{
     border-color: #5C7795;
   }

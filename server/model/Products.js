@@ -5,7 +5,11 @@ const Product =mongoose.Schema({
         type:String,
         require:true
     },
-    price:{
+    bought_price:{
+        type:Number,
+        require:true
+    },
+    selling_price:{
         type:Number,
         require:true
     },
@@ -18,6 +22,10 @@ const Product =mongoose.Schema({
         require:true
     },
     description:{
+        type:String,
+        require:true
+    },
+    catagory:{
         type:String,
         require:true
     },
