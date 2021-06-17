@@ -56,13 +56,26 @@ export const addCatagory=(state=initialState,action)=>{
     }
 }
 export const increaseCartNumber=(state=initialState,action)=>{
-    console.log(action.payload)
     switch(action.type){
         case Constant.INCREASE_CART_NUMBER:
             return{
                 ...state,
                 numberOfItemInTheCart:state.numberOfItemInTheCart+1,
                 cart_ids:state.cart_ids.concat(action.payload)
+            }
+        default:
+            return {
+                ...state
+            }
+    }
+}
+export const decreaseCartNumber=(state=initialState,action)=>{
+    switch(action.type){
+        case Constant.DECREASE_CART_NUMBER:
+            return{
+                ...state,
+                numberOfItemInTheCart:state.numberOfItemInTheCart-1,
+                cart_ids:state.cart_ids.filter((x)=> x !== action.payload)
             }
         default:
             return {

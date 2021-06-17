@@ -49,3 +49,13 @@ export const increaseCartNumber=(item_id)=>async (dispatch)=>{
         console.log(error)
     }
 }
+export const decreaseCartNumber=(item_id)=>async (dispatch)=>{
+    try{
+        dispatch({
+            type:Constant.DECREASE_CART_NUMBER,
+            payload:item_id
+        })
+    }catch(error){
+        console.log(error)
+    }
+}

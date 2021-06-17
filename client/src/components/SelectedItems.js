@@ -1,13 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import Image from '../images/PngItem_1302708.png';
 import TrashIcon from '@material-ui/icons/Delete';
 import Header from './Header';
 import {useSelector} from 'react-redux';
 import {useQuery} from '@apollo/client';
 import {ProductQuery} from '../apollo-client/Query';
-import VerticalMoreIcon from '@material-ui/icons/MoreHoriz';
-
+import {decreaseCartNumber} from '../redux/Action'
 export default function SelectedItems() {
     const CartItems=useSelector(state=>state.increaseCartNumber.cart_ids);
     const {data,error,loading}=useQuery(ProductQuery);
@@ -25,7 +22,7 @@ export default function SelectedItems() {
                                     <td>description</td>
                                     <td>price</td>
                                     <td>amount</td>
-                                    
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,14 +37,17 @@ export default function SelectedItems() {
                                             <td>{product.description}</td>
                                             <td>{product.selling_price}</td>
                                             <td>
-                                                <select className="cartItem__select" value={20} onChange={(e)=>{
+                                                <select className="cartItem__select"  onChange={(e)=>{
                                                 // props.qtyChangeHandler(props.item.cartItems[0].product,e.target.value)
                                                 }}>
-                                                    {console.log(new Range(6))}
-                                                    <option>dlkjf</option>
-                                                </select>
+                                                    {productCountStock(product.amount)}
+                                                </select>   
                                             </td>
-                                            
+                                            <td><TrashIcon color="secondary" onClick={
+                                                ()=>{
+
+                                                }
+                                            }/></td>
                                         </tr>
                                     </>:null
                                 ))

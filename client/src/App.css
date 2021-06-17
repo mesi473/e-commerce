@@ -406,8 +406,10 @@ body::-webkit-scrollbar{
   color: #dd219e;
 } 
 
-.cartItem__select {
-  padding: 10px 17px;
+td select{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cartItem__deleteBtn {
@@ -664,13 +666,6 @@ td{
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   color: #222;
-}
-td .status{
-  display: inline-block;
-  height: 20px;
-  width: 10px;
-  border-radius: 50%;
-  margin-right: 1rem;
 }
 tr td:last-child{
   display: flex;
