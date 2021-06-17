@@ -1,12 +1,8 @@
 import React from 'react'
-import Image1 from '../images/PngItem_6386654.png'
-import Image2 from '../images/PngItem_4046228.png'
-import Image3 from '../images/PngItem_1180019.png'
-import Image4 from '../images/PngItem_5852061.png'
-import Image5 from '../images/PngItem_2182838.png'
-import Image6 from '../images/PngItem_1302708.png';
 import Image7 from '../images/PngItem_4046189.png';
 import Image8 from '../images/PngItem_5136838.png';
+import {CatagoryQuery} from '../apollo-client/Query';
+import {useQuery} from '@apollo/client'
 
 
 
@@ -24,6 +20,8 @@ export default function ProductWithCatagory() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    const list=[0,1,2,3,4,5];
+    const {data,error,loading}=useQuery(CatagoryQuery);
     return (
         <div>
             <div className="letest-product">
@@ -32,44 +30,26 @@ export default function ProductWithCatagory() {
                     <hr />
                 </div>
                 <div className="catagories-list-product">
-                    <div className="catagories-list">
-                        <Button className={classes.catagoryBtn} variant="outlined">For male</Button>
-                        <div className="catagories-img">
-                            <img src={Image1} alt=""/>
-                        </div>
-                    </div>
-                    <div className="catagories-list c2">
-                        <Button className={classes.catagoryBtn} variant="outlined">For Female</Button>
-                        <div className="catagories-img">
-                            <img src={Image2} alt=""/>
-                        </div>
-                    </div>
-                    <div className="catagories-list c3">
-                        <Button className={classes.catagoryBtn} variant="outlined">Traditional</Button>
-                        <div className="catagories-img">
-                            <img src={Image3} alt=""/>
-                        </div>
-                    </div>
-                </div>
-                <div className="catagories-list-product">
-                    <div className="catagories-list c1">
-                        <Button className={classes.catagoryBtn} variant="outlined">Well Known Brand</Button>
-                        <div className="catagories-img">
-                            <img src={Image4} alt=""/>
-                        </div>
-                    </div>
-                    <div className="catagories-list c4">
-                        <Button className={classes.catagoryBtn} variant="outlined">Winter Clothes</Button>
-                        <div className="catagories-img">
-                            <img src={Image5} alt=""/>
-                        </div>
-                    </div>
-                    <div className="catagories-list ">
-                        <Button className={classes.catagoryBtn} variant="outlined">Summer Clothes</Button>
-                        <div className="catagories-img">
-                            <img src={Image6} alt=""/>
-                        </div>
-                    </div>
+                    {
+                        error?<p>{error.message}</p>:loading?<p>loading ...</p>:
+                        data.catagory.map((catagory,i)=>(
+                            i>=6?
+                            <div className={`catagories-list c${i-6}`} key={catagory._id}>
+                                <Button className={classes.catagoryBtn} variant="outlined">{catagory.title}</Button>
+                                <div className="catagories-img">
+                                    <img src={`http://localhost:5000/${catagory.imageUrl}`} alt=""/>
+                                    <p>{catagory.description}</p>
+                                </div>
+                            </div>:
+                            <div className={`catagories-list c${i}`} key={catagory._id}>
+                                <Button className={classes.catagoryBtn} variant="outlined">{catagory.title}</Button>
+                                <div className="catagories-img">
+                                    <img src={`http://localhost:5000/${catagory.imageUrl}`} alt=""/>
+                                    <p>{catagory.description}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
             

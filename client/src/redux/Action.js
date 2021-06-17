@@ -39,3 +39,13 @@ export const addCatagory=(item)=>async (dispatch)=>{
         console.log(error)
     }
 }
+export const increaseCartNumber=(item_id)=>async (dispatch)=>{
+    try{
+        dispatch({
+            type:Constant.INCREASE_CART_NUMBER,
+            payload:item_id
+        })
+    }catch(error){
+        console.log(error)
+    }
+}

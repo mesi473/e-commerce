@@ -8,9 +8,9 @@ const {
     GraphQLNonNull,
     GraphQLSchema,
     GraphQLList,
+    GraphQLID
 } =graphql;
 const ProductModel=require('./model/Products')
-
 
 
 
@@ -26,9 +26,10 @@ const ProductModel=require('./model/Products')
 const ProductType=new GraphQLObjectType({
     name:"Product",
     fields:()=>({
-        _id:{type:new GraphQLNonNull(graphql.GraphQLID)},
+        _id:{type:new GraphQLNonNull(GraphQLID)},
         title:{type:new GraphQLNonNull(GraphQLString)},
-        price:{type:new GraphQLNonNull(GraphQLFloat)},
+        selling_price:{type:new GraphQLNonNull(GraphQLFloat)},
+        bought_price:{type:new GraphQLNonNull(GraphQLFloat)},
         imageUrl:{type:new GraphQLNonNull(GraphQLString)},
         rating:{type:new GraphQLNonNull(GraphQLFloat)},
         description:{type:new GraphQLNonNull(GraphQLString)},
@@ -38,6 +39,7 @@ const ProductType=new GraphQLObjectType({
 const CatagoryType=new GraphQLObjectType({
     name:"Catagory",
     fields:()=>({
+        _id:{type:new GraphQLNonNull(GraphQLID)},
         title:{type:new GraphQLNonNull(GraphQLString)},
         imageUrl:{type:new GraphQLNonNull(GraphQLString)},
         description:{type:new GraphQLNonNull(GraphQLString)},

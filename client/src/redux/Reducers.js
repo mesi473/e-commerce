@@ -10,7 +10,10 @@ let initialState={
         status:false,
         catagories:[],
         error:[]
-    }
+    },
+    numberOfItemInTheCart:0,
+    cart_ids:[]
+    
 }
 
 export const Login=(state=initialState,action)=>{
@@ -45,6 +48,21 @@ export const addCatagory=(state=initialState,action)=>{
             return{
                 ...state,
                 catagory:action.payload
+            }
+        default:
+            return {
+                ...state
+            }
+    }
+}
+export const increaseCartNumber=(state=initialState,action)=>{
+    console.log(action.payload)
+    switch(action.type){
+        case Constant.INCREASE_CART_NUMBER:
+            return{
+                ...state,
+                numberOfItemInTheCart:state.numberOfItemInTheCart+1,
+                cart_ids:state.cart_ids.concat(action.payload)
             }
         default:
             return {

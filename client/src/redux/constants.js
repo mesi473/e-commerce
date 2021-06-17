@@ -3,4 +3,5 @@ export const ADD_TO_CART="ADD_TO_CART";
 export const ADD_PRODUCT_ITEM="ADD_PRODUCT_ITEM";
 export const ADD_ITEM="ADD_ITEM";
 export const ADD_CATAGORY='ADD_CATAGORY';
+export const INCREASE_CART_NUMBER='INCREASE_CART_NUMBER'
 

@@ -37,7 +37,7 @@ mongoose.connect("mongodb://localhost:27017/tsega_e_shope",{useNewUrlParser: tru
     })
     .catch(error=>console.log(error))
 
-
+app.use(express.static("uploads"));
 app.post('/additem',upload.single("image"),async (req,res)=>{
     const title=req.body.title;
     const description=req.body.description;

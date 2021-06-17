@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import {makeStyles,Badge} from '@material-ui/core'
 import ETHIcon from '../images/ETH.png';
 import USAIcon from '../images/USA.png';
-
+import {useSelector} from 'react-redux';
 
 const useStyle=makeStyles({
     searchInput:{
@@ -28,10 +28,8 @@ const useStyle=makeStyles({
 })
 
 export default function Header() {
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-    const classes=useStyle();
+    const CartItemNum=useSelector(state=>state.increaseCartNumber.numberOfItemInTheCart);
+    
     return (
         <div>
             <div className="header1">
@@ -76,8 +74,11 @@ export default function Header() {
                         <button><SearchIcon/></button>
                     </div>
                     <Link to="/product/selectedproduct">
-                        <button 
-                        className="cart-btn"><CartIcon /><Badge label="0"/></button>
+                        <button className="cart-btn">
+                            <Badge badgeContent={CartItemNum} color="secondary">
+                                <CartIcon />
+                            </Badge>
+                        </button>
                     </Link>
                     <Link to="/login">
                     <button
