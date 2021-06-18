@@ -39,11 +39,11 @@ export const addCatagory=(item)=>async (dispatch)=>{
         console.log(error)
     }
 }
-export const increaseCartNumber=(item_id)=>async (dispatch)=>{
+export const increaseCartNumber=(item_id,qty)=>async (dispatch)=>{
     try{
         dispatch({
             type:Constant.INCREASE_CART_NUMBER,
-            payload:item_id
+            payload:{item_id,qty}
         })
     }catch(error){
         console.log(error)
@@ -54,6 +54,25 @@ export const decreaseCartNumber=(item_id)=>async (dispatch)=>{
         dispatch({
             type:Constant.DECREASE_CART_NUMBER,
             payload:item_id
+        })
+    }catch(error){
+        console.log(error)
+    }
+}
+export const changeQTY=(item)=>async (dispatch)=>{
+    try{
+        dispatch({
+            type:Constant.CHANGE_QTY,
+            payload:item
+        })
+    }catch(error){
+        console.log(error)
+    }
+}
+export const clearCart=()=>async (dispatch)=>{
+    try{
+        dispatch({
+            type:Constant.CLEAR_CART,
         })
     }catch(error){
         console.log(error)

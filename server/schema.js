@@ -1,5 +1,6 @@
 const  graphql =require( 'graphql');
 const CatagoryModel=require('./model/Catagory');
+const CustomerBillInfoModel=require('./model/CustomerBill');
 
 const {
     GraphQLObjectType,
@@ -8,20 +9,14 @@ const {
     GraphQLNonNull,
     GraphQLSchema,
     GraphQLList,
-    GraphQLID
+    GraphQLID,
+    GraphQLInputObjectType
 } =graphql;
-const ProductModel=require('./model/Products')
+const ProductModel=require('./model/Products');
 
 
 
-// const schema = makeExecutableSchema({
-//     typeDefs: /*  */ `
-//         scalar Upload
-//     `,
-//     resolvers: {
-//         Upload: GraphQLUpload,
-//     },
-// });
+
 
 const ProductType=new GraphQLObjectType({
     name:"Product",
@@ -36,6 +31,39 @@ const ProductType=new GraphQLObjectType({
         amount:{type:new GraphQLNonNull(GraphQLFloat)}
     })
 });
+const SoldItemType=new GraphQLObjectType({
+    name:"SoldItem",
+    fields:()=>({
+        _id:{type:new GraphQLNonNull(GraphQLID)},
+        qty:{type:new GraphQLNonNull(GraphQLString)},
+    })
+});
+const SoldType=new GraphQLInputObjectType({
+    name:"Sold",
+    fields:()=>({
+        _id:{type:new GraphQLNonNull(GraphQLID)},
+        qty:{type:new GraphQLNonNull(GraphQLString)},
+    })
+})
+const CustomerType=new GraphQLObjectType({
+    name:"Customer",
+    fields:()=>({
+        _id:{type:new GraphQLNonNull(GraphQLID)},
+        firstName:{type:new GraphQLNonNull(GraphQLString)},
+        lastName:{type:new GraphQLNonNull(GraphQLString)},
+        country:{type:new GraphQLNonNull(GraphQLString)},
+        street:{type:new GraphQLNonNull(GraphQLString)},
+        latitute:{type:new GraphQLNonNull(GraphQLString)},
+        longitute:{type:new GraphQLNonNull(GraphQLString)},
+        zoom:{type:new GraphQLNonNull(GraphQLString)},
+        phoneNumber:{type:new GraphQLNonNull(GraphQLString)},
+        secrateKey:{type:new GraphQLNonNull(GraphQLString)},
+        cartItem:{type:new  GraphQLList(SoldItemType)},
+        date:{type:new GraphQLNonNull(GraphQLString)},
+    })
+});
+
+
 const CatagoryType=new GraphQLObjectType({
     name:"Catagory",
     fields:()=>({
@@ -59,6 +87,12 @@ const RootQuery=new GraphQLObjectType({
             type:new GraphQLList(CatagoryType),
             resolve(parent,args){
                 return CatagoryModel.find({})
+            }
+        },
+        customer_bill_info:{
+            type:new GraphQLList(CustomerType),
+            resolve(parent,args){
+                return CustomerBillInfoModel.find({});
             }
         }
     }
@@ -120,6 +154,35 @@ const Mutation=new GraphQLObjectType({
                 
             }
         },
+        add_customer_bill_info:{
+            type:CustomerType,
+            args:{
+                firstName:{type:new GraphQLNonNull(GraphQLString)},
+                lastName:{type:new GraphQLNonNull(GraphQLString)},
+                country:{type:new GraphQLNonNull(GraphQLString)},
+                street:{type:new GraphQLNonNull(GraphQLString)},
+                latitute:{type:new GraphQLNonNull(GraphQLString)},
+                longitute:{type:new GraphQLNonNull(GraphQLString)},
+                zoom:{type:new GraphQLNonNull(GraphQLString)},
+                phoneNumber:{type:new GraphQLNonNull(GraphQLString)},
+                secrateKey:{type:new GraphQLNonNull(GraphQLString)},
+                cartItem:{type:new GraphQLList(SoldType)},
+            },
+            resolve(parent,args){
+               new CustomerBillInfoModel({
+                firstName:args.firstName,
+                lastName:args.lastName,
+                country:args.country,
+                street:args.street,
+                latitute:args.latitute,
+                zoom:args.zoom,
+                phoneNumber:args.phoneNumber,
+                secrateKey:args.secrateKey,
+                cartItem:args.cartItem
+               })
+                
+            }
+        }
     }
 })
 

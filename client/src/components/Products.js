@@ -38,7 +38,7 @@ export default function Products() {
         // },500);
         let h3=document.getElementsByName(title);
         h3[0].classList.toggle('message2')
-        dispatch(increaseCartNumber(id));
+        dispatch(increaseCartNumber(id,1));
     }
     return (
         <div>

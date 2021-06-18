@@ -1,7 +1,16 @@
 import {gql} from '@apollo/client';
 
 export const addProductProperty=gql`
-    mutation addProduct($title:String!,$Image:Upload!,$description:String!,$price:Float!,$rating:Float!,$amount:Float!){
+    mutation maddCustomerBillInfo(
+                $firstName:args.firstName,
+                $lastName:args.lastName,
+                country:args.country,
+                street:args.street,
+                latitute:args.latitute,
+                zoom:args.zoom,
+                phoneNumber:args.phoneNumber,
+                secrateKey:args.secrateKey,
+                cartItem:args.cartItem){
         add_Product(title:$title,Image:$Image,description:$description,price:$price,rating:$rating,amount:$amount){
             title
             Image
@@ -9,7 +18,6 @@ export const addProductProperty=gql`
             amount
             price
             rating
-            
         }
         
     }

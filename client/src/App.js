@@ -6,7 +6,8 @@ import Login from './components/Login';
 import AdminDashboard from './components/DashBoardComponets/AdminDashboard';
 import {ApolloClient,ApolloProvider,InMemoryCache} from '@apollo/client';
 import {Provider} from 'react-redux';
-import store from './redux/store'
+import store from './redux/store';
+import Buyer_info from './components/BuyerInformation';
 
 
 const client=new ApolloClient({
@@ -21,7 +22,8 @@ function App() {
             <Route path="/" exact component={Home}/>
             <Route exact path="/product/selectedproduct" component={SelectedItems}/>
             <Route exact path="/login" component={Login}/>
-            <Route exact path="/admin/dashboard" component={AdminDashboard} />
+            <Route exact path="/admin/dashboard" component={AdminDashboard}/>
+            <Route exact path="/buy" component={Buyer_info}/>
           </Router>
         </ApolloProvider>
       </Provider>

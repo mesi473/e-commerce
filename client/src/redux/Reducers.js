@@ -63,19 +63,22 @@ export const increaseCartNumber=(state=initialState,action)=>{
                 numberOfItemInTheCart:state.numberOfItemInTheCart+1,
                 cart_ids:state.cart_ids.concat(action.payload)
             }
-        default:
-            return {
-                ...state
-            }
-    }
-}
-export const decreaseCartNumber=(state=initialState,action)=>{
-    switch(action.type){
         case Constant.DECREASE_CART_NUMBER:
             return{
                 ...state,
                 numberOfItemInTheCart:state.numberOfItemInTheCart-1,
-                cart_ids:state.cart_ids.filter((x)=> x !== action.payload)
+                cart_ids:state.cart_ids.filter((x)=> x.item_id !== action.payload)
+            }
+        case Constant.CHANGE_QTY:
+            return{
+                ...state,
+                cart_ids:action.payload
+            }
+        case Constant.CLEAR_CART:
+            return{
+                ...state,
+                cart_ids:[],
+                numberOfItemInTheCart:0
             }
         default:
             return {

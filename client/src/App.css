@@ -19,6 +19,7 @@ body::-webkit-scrollbar{
   flex-direction: row;
   justify-content: space-between;
   transition: 1s ease-in-out;
+  z-index: 1000;
 }
 .header1.sticky{
   display: none;
@@ -35,6 +36,7 @@ body::-webkit-scrollbar{
   transition: 1s ease-in-out;
   background:rgba(0,0,0,0.5);
   color: #ffffff;
+  z-index: 1000;
 }
 .header2.stickyup a,
 .header2.stickyup h2
@@ -595,7 +597,7 @@ td select{
 }
 
 .log a{
-     border: 0;
+    border: 0;
     background: none;
     display: block;
     margin: 20px auto;
@@ -678,4 +680,95 @@ tr td:last-child{
 }
 .card-body{
   background: #ffffff;
+}
+.product-price{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.total-calc-area{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.total-area{
+  border: 1px solid #5C7795;
+}
+.clearbutton{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid green;
+    padding: 14px 40px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition:24px;
+    transition :0.25s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+
+/* buyer information */
+.buyer-info{
+  position: relative;
+  box-shadow: 1px 1px 5px  rgba(0,0,0,0.3);
+  background: #ffffff;
+  width: 800px;
+  height: auto;
+  padding: 10px 10px;
+  text-align: center;
+  opacity: 0.7;
+  margin-top: 200px;
+  margin-left: 50px;
+}
+.buyer-info button{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid green;
+  padding: 10px 40px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition:24px;
+  transition :0.25s;
+  cursor: pointer;
+  text-decoration: none;
+}
+.buyer-info select,
+.buyer-info input{
+  border: 0;
+  background: none;
+  display: black;
+  margin:20px;
+  text-align: center;
+  border: 2px solid #5C7795 ;
+  padding: 14px 10px;
+  outline: none;
+  color: black;
+  border-radius: 60px;
+  transition: 0.25s;
+}
+.buyer-info h1{
+  color: black;
+    text-transform:uppercase;
+    font-weight: 500;
+}
+.map{
+
+  width: 400px;
+  height: 500px;
+  margin-top: 200px;
+}
+.buyer-info-area{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

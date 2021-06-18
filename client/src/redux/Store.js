@@ -8,7 +8,7 @@ const middleware=[Thunk];
 const reducer=combineReducers({
     addItem,
     addCatagory,
-    increaseCartNumber
+    increaseCartNumber,
 })
 
 const store=createStore(reducer,composeWithDevTools(applyMiddleware(...middleware)));
