@@ -1,23 +1,33 @@
 import {gql} from '@apollo/client';
 
-export const addProductProperty=gql`
-    mutation maddCustomerBillInfo(
-                $firstName:args.firstName,
-                $lastName:args.lastName,
-                country:args.country,
-                street:args.street,
-                latitute:args.latitute,
-                zoom:args.zoom,
-                phoneNumber:args.phoneNumber,
-                secrateKey:args.secrateKey,
-                cartItem:args.cartItem){
-        add_Product(title:$title,Image:$Image,description:$description,price:$price,rating:$rating,amount:$amount){
-            title
-            Image
-            description
-            amount
-            price
-            rating
+export const CustomerBillInfo=gql`
+    mutation CustomerBillInfo(
+                $firstName:String!,
+                $lastName:String!,
+                $country:String!,
+                $region: String!
+                $street:String!,
+                $latitute:String!,
+                $longitute:String!
+                $zoom:String!,
+                $phoneNumber:String!,
+                $secrateKey:String!,
+                $cartItem:Array!){
+        add_customer_bill_info(
+            firstName:$firstName,
+            lastName:$lastName,
+            country:$country,
+            region:$region,
+            street:$street,
+            latitute:$latitute,
+            longitute:$longitute,
+            zoom:$zoom,
+            phoneNumber:$phoneNumber,
+            secrateKey:$secrateKey,
+            cartItem:$cartItem
+        ){
+            success
+            error
         }
         
     }

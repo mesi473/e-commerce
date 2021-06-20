@@ -15,6 +15,10 @@ const CustomerBillInfo =mongoose.Schema({
         type:String,
         require:true
     },
+    region:{
+        type:String,
+        require:true
+    },
     street:{
         type:String,
         require:true
